@@ -1,0 +1,250 @@
+<header id="header">
+    <nav class="navbar navbar-expand-lg header__nav">
+        <img src="../../../assets/images/share_img/uit.png" alt="">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Menu before Login -->
+        <ng-container *ngIf="user===null;else AfterLogin">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item ">
+                        <span class="nav-link">Lịch Chiếu</span>
+                    </li>
+                    <li class="nav-item">
+                        <span class="nav-link">Cụm Rạp</span>
+                    </li>
+                    <li class="nav-item">
+                        <span class="nav-link">Tin Tức</span>
+                    </li>
+                    <li class="nav-item">
+                        <span class="nav-link" [ngx-scroll-to]="'#appSmartphone'">Ứng Dụng</span>
+                    </li>
+
+                </ul>
+                <div class="login">
+                    <button class="btn btn-login" data-toggle="modal" data-target="#SignInModal"
+                        (click)=" onResetform()" mat-button>Đăng Nhập</button>
+                </div>
+
+            </div>
+        </ng-container>
+    </nav>
+
+    <!-- Menu after Login -->
+    <ng-template #AfterLogin>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav m-auto">
+                <li class="nav-item ">
+                    <span class="nav-link">Lịch Chiếu</span>
+                </li>
+                <li class="nav-item">
+                    <span class="nav-link">Cụm Rạp</span>
+                </li>
+                <li class="nav-item">
+                    <span class="nav-link">Tin Tức</span>
+                </li>
+                <li class="nav-item">
+                    <span class="nav-link" [ngx-scroll-to]="'#appSmartphone'">Ứng Dụng</span>
+                </li>
+
+            </ul>
+            <div class="login d-flex justify-content-around align-items-center">
+                <img class="rounded-circle" [src]="user.img" alt="">
+                <a class="text-white mx-3 text-weight-bold " href="">{{user.hoTen}}</a>
+                <button class="btn"     (click)=" SignOut()" mat-button>Đăng Xuất</button>
+            </div>
+
+        </div>
+    </ng-template>
+
+
+</header>
+<!-- Modal Login-->
+<div #closeModal Modal class="modal fade" id="SignInModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content__bg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Đăng Nhập</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body bg-white">
+                    <div class="text-center mt-4">
+                        <h6 class="font-weight-bold mb-3">WELCOME BACK</h6>
+                        <p class="font-weight-bold mb-1 px-md-4">Hãy đăng nhập để đặt vé , nhiều bộ phim bom tấn đang
+                            chờ bạn ngày hôm nay.</p>
+                    </div>
+                    <div class="text-center col-md-10 mx-auto">
+                        <form id="loginform" [formGroup]="signInform" (ngSubmit)="SingIn()">
+                            <div class="form-group">
+                                <input type="text" placeholder="Tên tài khoản *"
+                                    class="form-control mx-auto mt-4 mb-2 border-secondary onFocusOut"
+                                    required="required" name="username" formControlName="username"
+                                    [ngClass]="{ 'is-invalid':f_in.username.touched && f_in.username.errors }">
+                                <div *ngIf="f_in.username.errors" class="invalid-feedback">
+                                    <div *ngIf="f_in.username.errors.required">Vui lòng nhập
+                                        tên đăng nhập</div>
+                                    <div *ngIf="f_in.username.errors.pattern">Tên đăng nhập không hợp lệ</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" placeholder="Mật khẩu *"
+                                    class="form-control mx-auto border-secondary onFocusOut" required="required"
+                                    name="password" formControlName="password"
+                                    [ngClass]="{ 'is-invalid':f_in.password.touched && f_in.password.errors }">
+                                <div *ngIf="f_in.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f_in.password.errors.required">Vui lòng nhập mật khẩu</div>
+
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <div>
+                                    <a href="#"
+                                        class="small font-weight-bold forgot-password text-secondary text-decoration-none">Quên
+                                        mật khẩu?</a>
+                                </div>
+                            </div>
+                            <div class="my-1">
+                                <!-- <input type="submit" [disabled]="signInform.invalid" mat-button value="ĐĂNG NHẬP"
+                                    class="btn-login px-4 py-1 m-auto" name=""> -->
+                                <button type="submit" [disabled]="signInform.invalid" mat-button
+                                    class="btn-login px-4 py-1 m-auto" name="">ĐĂNG NHẬP</button>
+                            </div>
+                        </form>
+                        <!-- GUEST LINKS -->
+                        <div class="font-weight-bold mb-3">
+                            <a href="#" style="color:#ba57f2" class="pt-2 d-block font-weight-bold text-decoration-none"
+                                data-toggle="modal" data-target="#SignUpModal" data-dismiss="modal"
+                                (click)="onResetform()" aria-label="Close">ĐĂNG KÝ</a>
+                        </div>
+                    </div>
+                    <div class="col-md-10 mx-auto">
+                        <h6 class="text-center text-secondary mb-1">Liên kết với chúng tôi qua</h6>
+                        <div class="d-flex justify-content-center">
+                            <a type="button" class="btn-floating btn-fb btn-sm">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a type="button" class="btn-floating btn-tw btn-sm">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a type="button" class="btn-floating btn-li btn-sm">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a type="button" class="btn-floating btn-git btn-sm">
+                                <i class="fab fa-github"></i>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal SIGNUP-->
+<div class="modal fade" id="SignUpModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content__bg ">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title">Đăng Ký</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body bg-white">
+                    <div class="text-center mt-1">
+                        <img style="width:80px; height: auto" src="../../../assets/images/share_img/uit.png" alt="">
+                        <p class="font-weight-bold mb-1 px-md-4">Đăng ký để được nhiều ưu đãi
+                            và bảo mật thông tin!</p>
+                    </div>
+                    <div class="text-center col-md-10 mx-auto">
+                        <form id="signUpform" [formGroup]="singnUpform" (ngSubmit)="SingUp()">
+                            <!-- item -->
+                            <div class="form-group">
+                                <input type="text" placeholder="Tên tài khoản *"
+                                    class="form-control mx-auto mt-4 mb-2 border-secondary onFocusOut"
+                                    required="required" formControlName="username" name="username"
+                                    [ngClass]="{ 'is-invalid':f_up.username.touched && f_up.username.errors }">
+                                <div *ngIf="f_up.username.errors" class="invalid-feedback">
+                                    <div *ngIf="f_up.username.errors.required">Vui lòng nhập
+                                        tên đăng nhập</div>
+                                    <div *ngIf="f_up.username.errors.pattern">Tên đăng nhập không hợp lệ</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" placeholder="Mật khẩu *"
+                                    class="form-control mx-auto mb-2 border-secondary onFocusOut" required="required"
+                                    formControlName="password" name="password"
+                                    [ngClass]="{ 'is-invalid':f_up.password.touched && f_up.password.errors }">
+                                <div *ngIf="f_up.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f_up.password.errors.required">Vui lòng nhập mật khẩu</div>
+                                    <div *ngIf="f_up.password.errors.minLength">Mật khẩu phải 6 kí tự</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="name" placeholder="Họ Tên *"
+                                    class="form-control mx-auto mb-2 border-secondary onFocusOut" required="required"
+                                    formControlName="name" name="name"
+                                    [ngClass]="{ 'is-invalid':f_up.name.touched && f_up.name.errors }">
+
+                                <div *ngIf="f_up.name.errors" class="invalid-feedback">
+                                    <div *ngIf="f_up.name.errors.required">Vui lòng nhập Họ Tên</div>
+                                    <div *ngIf="f_up.name.errors.pattern">Họ Tên không hợp lệ</div>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="Email *"
+                                    class="form-control mx-auto mb-2 border-secondary onFocusOut" required="required"
+                                    formControlName="email" name="email"
+                                    [ngClass]="{ 'is-invalid':f_up.email.touched && f_up.email.errors }">
+
+                                <div *ngIf="f_up.email.errors" class="invalid-feedback">
+                                    <div *ngIf="f_up.email.errors.required">Vui lòng nhập
+                                        email</div>
+                                    <div *ngIf="f_up.email.errors.email">Tên email không hợp lệ</div>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="SĐT *"
+                                    class="form-control mx-auto border-secondary onFocusOut" required="required"
+                                    formControlName="phone" name="phone"
+                                    [ngClass]="{ 'is-invalid':f_up.phone.touched && f_up.phone.errors }">
+
+                                <div *ngIf="f_up.phone.errors" class="invalid-feedback">
+                                    <div *ngIf="f_up.phone.errors.required">Vui lòng nhập
+                                        SĐT </div>
+                                    <div *ngIf="f_up.phone.errors.pattern || f_up.phone.errors.minLength">SĐT không hợp
+                                        lệ
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-around mb-2">
+                                <span>Bạn đã có tài khoản ?</span>
+                                <p style="cursor: pointer; color:#ba57f2;font-size: 15px" data-toggle="modal"
+                                    data-target="#SignInModal" data-dismiss="modal"
+                                    class="small font-weight-bold forgot-password  text-decoration-none">
+                                    ĐĂNG
+                                    NHẬP</p>
+
+                            </div>
+                            <div class="my-2">
+                                <button mat-button type="submit" (click)="SingUp()" class="btn-login px-4 py-1 m-auto" name="">ĐĂNG
+                                    KÝ</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

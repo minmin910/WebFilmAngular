@@ -1,0 +1,45 @@
+@import "src/assets/SCSS/helpers/_mixin.scss";
+@import "src/assets/SCSS/helpers/_variable.scss";
+@import "src/assets/SCSS/components/button.scss";
+#header {
+  .header__nav {
+    background-color: $bgnav;
+    img {
+      width: 50px;
+      min-height: 50px;
+    }
+    .navbar-collapse {
+      .navbar-nav {
+        .nav-item {
+          cursor: pointer;
+          span {
+            @include text($white, $headfs, $headfw);
+          }
+        }
+      }
+    }
+  }
+}
+#SignInModal,
+#SignUpModal {
+  .modal-dialog {
+    .modal-content__bg { 
+      /* let it scroll */
+      background: $loginModal;
+      padding: 3px;
+      border-radius: 5px;
+      .modal-content {
+        border: none;
+        .modal-header {
+          padding: 3px 0;
+          height: 46.8px;
+          background: $loginModal;
+          .modal-title {
+            margin-left: auto;
+            @include text($white, $fs_login_modal, bold);
+          }
+        }
+      }
+    }
+  }
+}

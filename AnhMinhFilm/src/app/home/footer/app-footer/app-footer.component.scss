@@ -1,0 +1,108 @@
+@import "../../../../assets/SCSS/helpers/_mixin.scss";
+@import "../../../../assets/SCSS/helpers/_variable.scss";
+
+p {
+  font-weight: unset;
+  font-size: unset;
+  letter-spacing: unset;
+  text-transform: unset;
+  line-height: unset;
+  margin-top: unset;
+  // margin-bottom: unset;
+}
+h2 {
+  font-weight: 500;
+  font-size: unset;
+  letter-spacing: unset;
+  text-transform: unset;
+  line-height: unset;
+  margin-top: unset;
+}
+#appSmartphone {
+  background: url(src/assets/images/app_img/backapp.jpg);
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  padding: 100px 0;
+  .text__left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+
+    .textLeft {
+      font-size: 38px;
+      color: $white;
+      line-height: 50px;
+    }
+    .textSmallLeft {
+      font-size: 20px;
+      color: $white;
+    }
+    .buttonLeft {
+      @include gradient_btn(20px, 10px 30px);
+    }
+    .textAppUnder {
+      margin-top: 10px;
+      font-size: 16px;
+      color: $white;
+      a {
+        color: $bluesky;
+        text-decoration: underline;
+      }
+    }
+  }
+  .phone__right {
+    position: relative;
+    .img-phone {
+      width: 100%;
+      height: auto;
+      z-index: 2;
+    }
+    .wrapSlick {
+      position: absolute;
+      top: 11%;
+      left: 30.6%;
+      bottom: 13%;
+      right: 30.7%;
+      z-index: 1;
+      overflow: hidden;
+      .slide-list {
+        //overflow: hidden;
+        position: relative;
+        display: block;
+      }
+      .swiper-wrapper {
+        .item-app {
+          overflow: hidden;
+          height: 100%;
+          width: 100%;
+          img {
+            height: 100%;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+// @media only screen and (max-width: 992px) {
+//   #appSmartphone .text__left .buttonLeft,
+//   #appSmartphone .text__left .textAppUnder {
+//     align-self: center;
+//   }
+// }
+// @media only screen and (max-width: 768px) {
+//   #appSmartphone .text__left .textLeft {
+//     font-size: 30px;
+//     margin-bottom: 0;
+//   }
+//   #appSmartphone[_ngcontent-njq-c10]
+//     .text__left[_ngcontent-njq-c10]
+//     .textSmallLeft[_ngcontent-njq-c10] {
+//     font-size: 18px;
+//   }
+//   #appSmartphone .text__left .buttonLeft {
+//     @include btn(16px, 10px 20px);
+//   }
+// }

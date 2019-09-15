@@ -1,0 +1,33 @@
+$bluesky:#00DFFF;
+$white: #fff;
+//header
+$dark:rgba(4, 4, 6, 0.46);
+$bgnav:rgba(4, 4, 6, 0.46);
+$logingradient:linear-gradient(to right, #e520fa, #9784ec);
+$loginModal: linear-gradient(90deg, #fc04fe, #3bfedc);
+//endheader
+
+
+
+//padding
+
+
+//font-size
+$headfs: 18px;
+$fs_login: 14px;
+$fs_login_modal: 20px;
+//fontweight
+$headfw: 400;
+
+
+//reponsive
+$breakpoints:(
+    'extra-large-widescreen':1280px,
+    'extra-large':1200px,
+    'large-fixed':1024px,
+    'large':992px,
+    'medium-fixed':768px,
+    'medium':760px,
+    'small':576px,
+    'small-iphone-7plus':576px,
+);

@@ -1,0 +1,55 @@
+@mixin gradient_btn($fs, $pd) {
+  background: none;
+  border: none;
+  outline: none;
+  padding: $pd;
+  font-family: "Quicksand", sans-serif;
+  text-align: center;
+  color: white;
+  font-size: $fs;
+  font-weight: 700;
+  // text-transform: uppercase;
+  background: linear-gradient(45deg, #d5135a, #f05924);
+  box-shadow: 0px 4px 30px rgba(223, 45, 70, 0.35);
+  display: inline-block;
+  border-radius: 50px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transition: all 0.3s;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0px 7px 30px rgba(223, 45, 70, 0.75);
+    transform: translateY(-5px);
+  }
+  &:disabled {
+  }
+  // @media screen and (min-width: 768px) {
+  //     &:hover {
+  //         transform: translateY(-5px);
+  // 	}
+  //   }
+}
+@mixin text($color, $fs, $fw) {
+  color: $color;
+  font-size: $fs;
+  font-weight: $fw;
+}
+@mixin respond-to($breakpoint) {
+  @if map-has-key($map: $breakpoints, $key: $breakpoint) {
+    $value: map-get(
+      $map: $breakpoints,
+      $key: $breakpoint
+    );
+    @media screen and (max-width: $value) {
+      @content;
+    }
+  } @else {
+    @warn "{breakpoint không tồng tại }";
+  }
+}
+@mixin button($bgcolor, $height, $boder-radius) {
+  background: $bgcolor;
+  height: $height;
+  border-radius: $boder-radius;
+  cursor: pointer;
+}
